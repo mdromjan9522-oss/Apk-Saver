@@ -1,0 +1,12 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Personal-use app: open read/write on apks and images paths.
+    match /apks/{file=**} {
+      allow read, write: if true;
+    }
+    match /images/{file=**} {
+      allow read, write: if true;
+    }
+  }
+}

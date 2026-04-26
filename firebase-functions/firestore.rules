@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Personal-use app: client reads/writes its own auth + apk metadata.
+    // OTP doc is written ONLY by the Cloud Function (admin SDK bypasses rules)
+    // and read by the client to verify. Client cannot write OTP directly.
+    match /config/auth {
+      allow read, write: if true;
+    }
+    match /config/otp {
+      // OTP is generated + emailed by Lovable Cloud edge function (send-otp).
+      // Client stores the returned hash + expiry here, then reads it to verify.
+      allow read, write, delete: if true;
+    }
+    match /apks/{id} {
+      allow read, write: if true;
+    }
+  }
+}

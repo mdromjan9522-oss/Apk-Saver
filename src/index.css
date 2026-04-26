@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 20% 99%;
+    --foreground: 240 15% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 15% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 15% 12%;
+
+    --primary: 250 84% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 270 90% 70%;
+
+    --secondary: 240 20% 96%;
+    --secondary-foreground: 240 15% 20%;
+
+    --muted: 240 15% 95%;
+    --muted-foreground: 240 8% 45%;
+
+    --accent: 160 75% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 15% 90%;
+    --input: 240 15% 92%;
+    --ring: 250 84% 60%;
+
+    --radius: 0.875rem;
+
+    --gradient-primary: linear-gradient(135deg, hsl(250 84% 60%), hsl(270 90% 70%));
+    --gradient-glow: linear-gradient(135deg, hsl(280 90% 65%), hsl(330 90% 65%), hsl(190 90% 60%));
+    --shadow-elegant: 0 10px 40px -10px hsl(250 84% 60% / 0.25);
+    --shadow-card: 0 4px 20px -4px hsl(240 30% 30% / 0.08);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 250 84% 60%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 20% 7%;
+    --foreground: 240 15% 96%;
+
+    --card: 240 18% 11%;
+    --card-foreground: 240 15% 96%;
+
+    --popover: 240 18% 11%;
+    --popover-foreground: 240 15% 96%;
+
+    --primary: 260 90% 70%;
+    --primary-foreground: 240 20% 7%;
+    --primary-glow: 280 95% 75%;
+
+    --secondary: 240 15% 16%;
+    --secondary-foreground: 240 15% 96%;
+
+    --muted: 240 15% 14%;
+    --muted-foreground: 240 10% 65%;
+
+    --accent: 160 80% 50%;
+    --accent-foreground: 240 20% 7%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 15% 20%;
+    --input: 240 15% 18%;
+    --ring: 260 90% 70%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(260 90% 70%), hsl(280 95% 75%));
+    --gradient-glow: linear-gradient(135deg, hsl(280 95% 70%), hsl(330 95% 70%), hsl(190 95% 65%));
+    --shadow-elegant: 0 10px 40px -10px hsl(260 90% 70% / 0.4);
+    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+
+    --sidebar-background: 240 18% 9%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 260 90% 70%;
+    --sidebar-primary-foreground: 240 20% 7%;
+    --sidebar-accent: 240 15% 14%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 15% 18%;
+    --sidebar-ring: 260 90% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+@layer components {
+  .romjan-glow {
+    background: var(--gradient-glow);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    animation: romjan-shift 4s ease infinite, romjan-pulse 2.4s ease-in-out infinite;
+    text-shadow: 0 0 24px hsl(280 90% 65% / 0.45);
+    filter: drop-shadow(0 0 8px hsl(280 90% 65% / 0.5));
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .shadow-card-soft {
+    box-shadow: var(--shadow-card);
+  }
+}
+
+@keyframes romjan-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes romjan-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px hsl(280 90% 65% / 0.45));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px hsl(330 90% 65% / 0.7));
+  }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s ease-out;
+}
